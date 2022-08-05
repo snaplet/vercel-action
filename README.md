@@ -6,6 +6,39 @@ Deploy Vercel previews per pull request. Integrate with external services smooth
 
 Create a GitHub Action Workflow file in your repository following one of these examples.
 
+### Standalone
+
+```yaml
+# .github/workflows/preview.yml
+
+name: Preview Environment
+
+env:
+  VERCEL_ACCESS_TOKEN: ${{ secrets.VERCEL_ACCESS_TOKEN }}
+  VERCEL_PROJECT_ID: <YOUR_VERCEL_PROJECT_ID>
+
+on:
+  pull_request:
+    types: [opened, synchronize, closed]
+    branches:
+      - main
+
+jobs:
+  deploy:
+    if: ${{ github.event.action == 'opened' || github.event.action == 'synchronize' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: snaplet/vercel-action@main
+  delete:
+    if: ${{ github.event.action == 'closed' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: snaplet/vercel-action@main
+        with:
+          delete: true
+```
+
 ### With Snaplet
 
 Using [snaplet/action](https://github.com/snaplet/action)
