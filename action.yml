@@ -1,5 +1,7 @@
 name: Vercel Preview Environment
 
+description: Deploy Vercel preview environments, integrate with external services smoothly
+
 inputs:
   delete:
     description: Delete the preview related data on Vercel
