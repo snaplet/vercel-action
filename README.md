@@ -1,6 +1,6 @@
 # Vercel Preview Environment Github Action
 
-Deploy Vercel previews per pull request. Integrate with external services smoothly.
+> Deploy Vercel previews per pull request. Integrate with external services smoothly.
 
 ## Usage
 
