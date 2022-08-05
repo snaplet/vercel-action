@@ -18,12 +18,17 @@ if (!deployHookExists) {
   deployHookUrl = updatedProject?.link?.deployHooks?.find(deployHook => deployHook.ref === process.env.GITHUB_HEAD_REF)?.url;
   console.log("Deploy hook created.");
 
-  const prefix = process.env.ENV_PREVIEW_PREFIX;
-  await Promise.all(Object
-    .entries(process.env)
-    .filter(([k]) => k.startsWith(prefix))
-    .map(async ([k, value]) => {
-      const key = k.replace(prefix, "");
+  const environmentVariables = process.env.VERCEL_PREVIEW_ENV
+    .trim()
+    .split("\n")
+    .filter(line => line.trim().length > 0 && !line.trim().startsWith("#"))
+    .map(line => {
+      const [key, ...parts] = line.trim().split("=");
+      const value = parts.join("=");
+      return { key, value };
+    });
+  await Promise.all(environmentVariables
+    .map(async ({ key, value }) => {
       console.log(`Creating ${key} environment variable...`);
       await vercel("/env", {
         method: "POST",

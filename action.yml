@@ -6,11 +6,10 @@ inputs:
     required: false
     type: boolean
     default: false
-  env-preview-prefix:
-    description: Prefix to detect environment variables to create on Vercel
+  env:
+    description: Environment variables to create on Vercel, they are scoped to the "preview" environment and the current branch
     required: false
     type: string
-    default: VERCEL_PREVIEW_
 
 runs:
   using: composite
@@ -23,7 +22,7 @@ runs:
       name: Deploy
       shell: bash
       env:
-        ENV_PREVIEW_PREFIX: ${{ inputs.env-preview-prefix }}
+        VERCEL_PREVIEW_ENV: ${{ inputs.env }}
       run: node --experimental-fetch --no-warnings ${{ github.action_path }}/scripts/deploy.mjs
 
     - if: ${{ inputs.delete == 'true' }}
