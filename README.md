@@ -8,6 +8,8 @@ Create a GitHub Action Workflow file in your repository following one of these e
 
 ### With Snaplet
 
+Using [snaplet/action](https://github.com/snaplet/action)
+
 ```yaml
 # .github/workflows/preview.yml
 
