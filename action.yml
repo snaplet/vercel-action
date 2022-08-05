@@ -1,6 +1,6 @@
 name: Vercel Preview Environment
 
-description: Deploy Vercel preview environments, integrate with external services smoothly
+description: Deploy Vercel preview environments per pull request, integrate with external services smoothly
 
 inputs:
   delete:
