@@ -1,6 +1,10 @@
 # Vercel Preview Environment Github Action
 
+Deploy Vercel previews per pull request. Integrate with external services smoothly.
+
 ## Usage
+
+Create a GitHub Action Workflow file in your repository following one of these examples.
 
 ### With Snaplet
 
@@ -8,6 +12,12 @@
 # .github/workflows/preview.yml
 
 name: Preview Environment
+
+env:
+  SNAPLET_ACCESS_TOKEN: ${{ secrets.SNAPLET_ACCESS_TOKEN }}
+  SNAPLET_PROJECT_ID: <YOUR_SNAPLET_PROJECT_ID>
+  VERCEL_ACCESS_TOKEN: ${{ secrets.VERCEL_ACCESS_TOKEN }}
+  VERCEL_PROJECT_ID: <YOUR_VERCEL_PROJECT_ID>
 
 on:
   pull_request:
@@ -23,13 +33,7 @@ jobs:
       - uses: actions/checkout@v3
       - id: snaplet
         uses: snaplet/action@main
-        with:
-          access-token: ${{ secrets.SNAPLET_ACCESS_TOKEN }}
-          project-id: <YOUR_SNAPLET_PROJECT_ID>
       - uses: snaplet/vercel-action@main
-        with:
-          access-token: ${{ secrets.VERCEL_ACCESS_TOKEN }}
-          project-id: <YOUR_VERCEL_PROJECT_ID>
         env:
           VERCEL_PREVIEW_DATABASE_URL: ${{ steps.snaplet.outputs.database-url }}
   delete:
@@ -38,30 +42,26 @@ jobs:
     steps:
       - uses: snaplet/action@main
         with:
-          access-token: ${{ secrets.SNAPLET_ACCESS_TOKEN }}
           delete: true
-          project-id: <YOUR_SNAPLET_PROJECT_ID>
       - uses: snaplet/vercel-action@main
         with:
-          access-token: ${{ secrets.VERCEL_ACCESS_TOKEN }}
           delete: true
-          project-id: <YOUR_VERCEL_PROJECT_ID>
 ```
 
 ## Documentation
 
 ### Prerequisites
 
-- [Connect your GitHub repository with Vercel](https://vercel.com/docs/concepts/git/vercel-for-github)
+[Connect your GitHub repository with Vercel](https://vercel.com/docs/concepts/git/vercel-for-github)
+
+### Environment variables
+
+- VERCEL_ACCESS_TOKEN
+- VERCEL_PROJECT_ID
 
 ### Inputs
 
 ```yaml
-access-token:
-  description: Vercel access token
-  required: true
-  type: string
-
 delete:
   description: Delete the preview related data on Vercel
   required: false
@@ -73,9 +73,4 @@ env-preview-prefix:
   required: false
   type: string
   default: VERCEL_PREVIEW_
-
-project-id:
-  description: Vercel project id
-  required: true
-  type: string
 ```
