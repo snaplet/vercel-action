@@ -28,7 +28,6 @@ jobs:
     if: ${{ github.event.action == 'opened' || github.event.action == 'synchronize' }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
       - uses: snaplet/vercel-action@main
   delete:
     if: ${{ github.event.action == 'closed' }}
@@ -65,7 +64,6 @@ jobs:
     if: ${{ github.event.action == 'opened' || github.event.action == 'synchronize' }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
       - id: snaplet
         uses: snaplet/action@main
       - uses: snaplet/vercel-action@main
