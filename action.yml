@@ -1,6 +1,6 @@
-name: Vercel Preview Environment
+name: Vercel Previews
 
-description: Deploy Vercel preview environments, integrate with external services smoothly
+description: Deploy Vercel previews, integrate with external services smoothly
 
 inputs:
   delete:
