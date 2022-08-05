@@ -40,7 +40,7 @@ jobs:
 
 ### With Snaplet
 
-Using [snaplet/action](https://github.com/snaplet/action)
+Using [snaplet/action](https://github.com/marketplace/actions/snaplet-instant-database)
 
 ```yaml
 # .github/workflows/preview.yml
