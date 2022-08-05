@@ -17,16 +17,16 @@ runs:
   steps:
     - name: Setup Vercel
       shell: bash
-      run: node --experimental-fetch --no-warnings scripts/setup.mjs
+      run: node --experimental-fetch --no-warnings ${{ github.action_path }}/scripts/setup.mjs
 
     - if: ${{ inputs.delete == 'false' }}
       name: Deploy Preview
       shell: bash
       env:
         ENV_PREVIEW_PREFIX: ${{ inputs.env-preview-prefix }}
-      run: node --experimental-fetch --no-warnings scripts/deploy.mjs
+      run: node --experimental-fetch --no-warnings ${{ github.action_path }}/scripts/deploy.mjs
 
     - if: ${{ inputs.delete == 'true' }}
       name: Delete Preview
       shell: bash
-      run: node --experimental-fetch --no-warnings scripts/delete.mjs
+      run: node --experimental-fetch --no-warnings ${{ github.action_path }}/scripts/delete.mjs
