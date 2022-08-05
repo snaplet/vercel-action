@@ -1,6 +1,6 @@
 name: Vercel Preview
 
-description: Deploy Vercel previews, integrate with external services smoothly
+description: Deploy Vercel previews. Integrate with external services smoothly.
 
 inputs:
   delete:
