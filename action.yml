@@ -1,5 +1,7 @@
 name: Vercel Preview
 
+author: Snaplet
+
 description: Deploy Vercel previews. Integrate with external services smoothly.
 
 inputs:
