@@ -8,7 +8,7 @@
 
 Vercel preview deployments happen automatically with each commit. This action allows you to take control over automatic deployments, which is helpful when you want to create external resources (like a database) and wait for services to be ready before deploying your code on Vercel.
 
-Combine this action with [snaplet/action](https://github.com/snaplet/action) to get preview databases with production-accurate data for each of your Vercel preview deployment. [Learn more here.](#with-snaplet)
+Combine this action with [snaplet/action](https://github.com/marketplace/actions/snaplet-preview-databases) to get preview databases with production-accurate data for each of your Vercel preview deployment. [Learn more here.](#with-snaplet)
 
 ## Usage
 
@@ -48,7 +48,7 @@ jobs:
 
 ### With Snaplet
 
-Using [snaplet/action](https://github.com/marketplace/actions/snaplet-instant-database)
+Using [snaplet/action](https://github.com/marketplace/actions/snaplet-preview-databases)
 
 ```yaml
 # .github/workflows/preview.yml
