@@ -1,8 +1,8 @@
-name: Vercel Preview
+name: Vercel Preview Deployments
 
 author: Snaplet
 
-description: Deploy Vercel previews. Integrate with external services smoothly.
+description: Trigger Vercel preview deployments when you want to integrate with external services smoothly.
 
 inputs:
   delete:
