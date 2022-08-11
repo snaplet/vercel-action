@@ -4,9 +4,9 @@
   <img width="360" src="logo.png" alt="Snappy looking through a magnifier with the Vercel logo in its center">
 </p>
 
-> Deploy Vercel previews. Integrate with external services smoothly.
+> Trigger Vercel preview deployments when you want to integrate with external services smoothly.
 
-Vercel preview deployments happen automatically with each commit. This action allows you to pause automatic deployments, which is helpful when you want to wait for an external service (like a database) to be ready before running code against it.
+Vercel preview deployments happen automatically with each commit. This action allows you to take control over automatic deployments, which is helpful when you want to create external resources (like a database) and wait for services to be ready before deploying your code on Vercel.
 
 Combine this action with [snaplet/action](https://github.com/snaplet/action) to get a preview database with production-accurate data for each pull-request. [Learn more here.](#with-snaplet)
 
