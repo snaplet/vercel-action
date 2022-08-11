@@ -8,7 +8,7 @@
 
 Vercel preview deployments happen automatically with each commit. This action allows you to pause automatic deployments, which is helpful when you want to wait for an external service (like a database) to be ready before running code against it.
 
-Combine this action with [snaplet/action](https://github.com/snaplet/action) to get a fresh database for each pull-request. [Learn more here.](#with-snaplet)
+Combine this action with [snaplet/action](https://github.com/snaplet/action) to get an ephemeral database with production-accurate data for each pull-request. [Learn more here.](#with-snaplet)
 
 ## Usage
 
