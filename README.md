@@ -1,5 +1,9 @@
 # Vercel Preview Github Action
 
+<p align="center">
+  <img width="360" src="logo.png" alt="Snappy looking through a magnifier with the Vercel logo in its center">
+</p>
+
 > Deploy Vercel previews. Integrate with external services smoothly.
 
 ## Usage
