@@ -98,8 +98,9 @@ jobs:
 
 ### Environment variables
 
-- VERCEL_ACCESS_TOKEN
-- VERCEL_PROJECT_ID
+- VERCEL_ACCESS_TOKEN **[required]**
+- VERCEL_PROJECT_ID **[required]**
+- VERCEL_TEAM_ID
 
 ### Inputs
 
