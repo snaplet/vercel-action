@@ -14,7 +14,8 @@ const fetch = (url, options = {}) => new Promise((resolve, reject) => {
 });
 
 if (process.env.VERCEL_ENV === "preview") {
-  const deployment = await fetch(`https://api.vercel.com/v13/deployments/${process.env.VERCEL_URL}`, {
+  const teamId = process.env.VERCEL_TEAM_ID ? `?teamId=${process.env.VERCEL_TEAM_ID}` : '';
+  const deployment = await fetch(`https://api.vercel.com/v13/deployments/${process.env.VERCEL_URL}${teamId}`, {
     headers: { Authorization: `Bearer ${process.env.VERCEL_ACCESS_TOKEN}` }
   }).then(res => res.json());
   if (!deployment.meta.deployHookId) {
