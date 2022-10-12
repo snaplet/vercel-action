@@ -105,6 +105,11 @@ jobs:
 ### Inputs
 
 ```yaml
+await-for-deployment:
+  description: Await for the preview deployment to be ready and output the preview deployment URL
+  required: false
+  type: boolean
+  default: false
 delete:
   description: Delete the preview related data on Vercel
   required: false
@@ -114,4 +119,16 @@ env:
   description: Environment variables to create on Vercel, they are scoped to the "preview" environment and the current branch
   required: false
   type: string
+ignored-build-command:
+  description: Command set for the Ignored Build Step in your project settings, the default script is canceling every preview deployments coming from the Vercel GitHub App.
+  required: false
+  type: string
+  default: curl -sS "https://raw.githubusercontent.com/snaplet/vercel-action/v2/scripts/ignore-build.mjs" | node --input-type=module
+```
+
+### Outputs
+
+```yaml
+deployment-url:
+  description: Preview deployment url
 ```
