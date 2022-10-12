@@ -30,8 +30,8 @@ if (process.env.VERCEL_TEAM_ID && !project?.env?.find(env => env.key === "VERCEL
   console.log("VERCEL_TEAM_ID environment variable created.");
 }
 
-const commandForIgnoringBuildStep = `curl -sS "https://raw.githubusercontent.com/snaplet/vercel-action/fix-add-vercel-team-id/scripts/ignore-build.mjs" | node --input-type=module`;
-if (project?.commandForIgnoringBuildStep !== commandForIgnoringBuildStep) {
+const commandForIgnoringBuildStep = process.env.IGNORED_BUILD_COMMAND;
+if (commandForIgnoringBuildStep && project?.commandForIgnoringBuildStep !== commandForIgnoringBuildStep) {
   console.log("Setting Ignored Build Step Command...");
   await vercel("/", {
     method: "PATCH",

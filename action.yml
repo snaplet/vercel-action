@@ -5,6 +5,11 @@ author: Snaplet
 description: Trigger Vercel preview deployments when you want to integrate with external services smoothly.
 
 inputs:
+  await-for-deployment:
+    description: Await for the deployment to be ready and output the deployment URL
+    required: false
+    type: boolean
+    default: false
   delete:
     description: Delete the preview related data on Vercel
     required: false
@@ -14,18 +19,32 @@ inputs:
     description: Environment variables to create on Vercel, they are scoped to the "preview" environment and the current branch
     required: false
     type: string
+  ignored-build-command:
+    description: Command set for the Ignored Build Step in your project settings, the default script is canceling every preview deployments coming from the Vercel GitHub App.
+    required: false
+    type: string
+    default: curl -sS "https://raw.githubusercontent.com/snaplet/vercel-action/v1/scripts/ignore-build.mjs" | node --input-type=module
+
+outputs:
+  deployment-url:
+    description: Preview deployment url
+    value: ${{ steps.deploy.outputs.deployment-url }}
 
 runs:
   using: composite
   steps:
     - name: Setup
       shell: bash
+      env:
+        IGNORED_BUILD_COMMAND: ${{ inputs.ignored-build-command }}
       run: node --experimental-fetch --no-warnings ${{ github.action_path }}/scripts/setup.mjs
 
     - if: ${{ inputs.delete == 'false' }}
+      id: deploy
       name: Deploy
       shell: bash
       env:
+        AWAIT_FOR_DEPLOYMENT: ${{ inputs.await-for-deployment }}
         VERCEL_PREVIEW_ENV: ${{ inputs.env }}
       run: node --experimental-fetch --no-warnings ${{ github.action_path }}/scripts/deploy.mjs
 
