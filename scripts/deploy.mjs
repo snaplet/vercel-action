@@ -51,12 +51,12 @@ console.log("Deployment created.");
 
 if (process.env.AWAIT_FOR_DEPLOYMENT === "true") {
   console.log("Waiting for deployment to be ready...");
-  const deployment = await waitForDeploymentToBeReady(job.createdAt);
+  const deployment = await awaitForDeploymentToBeReady(job.createdAt);
   console.log("Deployment ready.");
   console.log(`::set-output name=deployment-url::${deployment.url}`);
 }
 
-async function waitForDeploymentToBeReady(createdAt) {
+async function awaitForDeploymentToBeReady(createdAt) {
   const url = new URL("https://api.vercel.com/v6/deployments");
   url.search = new URLSearchParams({
     projectId: process.env.VERCEL_PROJECT_ID,
@@ -77,6 +77,6 @@ async function waitForDeploymentToBeReady(createdAt) {
       throw new Error("Deployment failed");
     default:
       await new Promise(resolve => setTimeout(resolve, 2000));
-      return waitForDeploymentToBeReady(createdAt);
+      return awaitForDeploymentToBeReady(createdAt);
   }
 }
