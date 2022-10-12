@@ -8,6 +8,8 @@
 
 Vercel preview deployments happen automatically with each commit. This action allows you to take control over automatic deployments, which is helpful when you want to create external resources (like a database) and wait for services to be ready before deploying your code on Vercel.
 
+To take control over the automatic deployments, this action is injecting a custom [script](scripts/ignore-build.mjs) into the [Ignored Build Step](https://vercel.com/guides/how-do-i-use-the-ignored-build-step-field-on-vercel) in your Vercel project settings. This script is canceling all preview deployments coming from the Vercel Github App and only allows preview deployments coming from this GitHub action (based on [deploy hooks](https://vercel.com/docs/concepts/git/deploy-hooks)).
+
 Combine this action with [snaplet/action](https://github.com/marketplace/actions/snaplet-preview-databases) to get preview databases with production-accurate data for each of your Vercel preview deployment. [Learn more here.](#with-snaplet)
 
 ## Usage
