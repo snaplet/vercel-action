@@ -122,7 +122,7 @@ env:
   required: false
   type: string
 ignored-build-command:
-  description: Command set for the Ignored Build Step in your project settings, the default script is canceling every preview deployments coming from the Vercel GitHub App.
+  description: Command set for the Ignored Build Step in your project settings, the default script is canceling all preview deployments coming from the Vercel Github App and only allows preview deployments coming from this GitHub action.
   required: false
   type: string
   default: curl -sS "https://raw.githubusercontent.com/snaplet/vercel-action/v2/scripts/ignore-build.mjs" | node --input-type=module
