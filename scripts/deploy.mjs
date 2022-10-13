@@ -46,7 +46,7 @@ if (!deployHookExists) {
 }
 
 console.log("Creating deployment...");
-const { job } = await fetch(deployHookUrl, { method: "POST" });
+const { job } = await fetch(deployHookUrl, { method: "POST" }).then(res => res.json());
 console.log("Deployment created.");
 
 if (process.env.AWAIT_FOR_DEPLOYMENT === "true") {
