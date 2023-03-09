@@ -1,6 +1,6 @@
 console.log("Updating environment variables...");
 await updateEnvironmentVariables();
-console.log("Deployment updated.");
+console.log("Environment variables updated.");
 
 console.log("Creating deployment...");
 let deployment = await createNewDeploymentForBranch(
