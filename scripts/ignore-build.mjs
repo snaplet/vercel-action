@@ -18,7 +18,7 @@ if (process.env.VERCEL_ENV === "preview") {
   const deployment = await fetch(`https://api.vercel.com/v13/deployments/${process.env.VERCEL_URL}${teamId}`, {
     headers: { Authorization: `Bearer ${process.env.VERCEL_ACCESS_TOKEN}` }
   }).then(res => res.json());
-  if (!deployment.meta.deployHookId) {
+  if (!deployment.name.startsWith('snaplet-action-')) {
     process.exit(0);
   }
 }
