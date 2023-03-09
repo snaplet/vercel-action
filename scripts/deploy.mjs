@@ -80,6 +80,7 @@ async function createNewDeploymentForBranch(branchName) {
   const url = new URL("https://api.vercel.com/v13/deployments");
   url.search = new URLSearchParams({
     ...(process.env.VERCEL_TEAM_ID && { teamId: process.env.VERCEL_TEAM_ID }),
+    forceNew: 1,
   });
 
   return fetch(url, {
