@@ -38,12 +38,12 @@ jobs:
     if: ${{ github.event.action == 'opened' || github.event.action == 'synchronize' }}
     runs-on: ubuntu-latest
     steps:
-      - uses: snaplet/vercel-action@v2
+      - uses: snaplet/vercel-action@v3
   delete:
     if: ${{ github.event.action == 'closed' }}
     runs-on: ubuntu-latest
     steps:
-      - uses: snaplet/vercel-action@v2
+      - uses: snaplet/vercel-action@v3
         with:
           delete: true
 ```
@@ -76,7 +76,7 @@ jobs:
     steps:
       - id: snaplet
         uses: snaplet/action@v1
-      - uses: snaplet/vercel-action@v2
+      - uses: snaplet/vercel-action@v3
         with:
           env: |
             DATABASE_URL=${{ steps.snaplet.outputs.database-url }}
@@ -87,7 +87,7 @@ jobs:
       - uses: snaplet/action@v1
         with:
           delete: true
-      - uses: snaplet/vercel-action@v2
+      - uses: snaplet/vercel-action@v3
         with:
           delete: true
 ```
@@ -125,7 +125,7 @@ ignored-build-command:
   description: Command set for the Ignored Build Step in your project settings, the default script is canceling all preview deployments coming from the Vercel Github App and only allows preview deployments coming from this GitHub action.
   required: false
   type: string
-  default: curl -sS "https://raw.githubusercontent.com/snaplet/vercel-action/v2/scripts/ignore-build.mjs" | node --input-type=module
+  default: curl -sS "https://raw.githubusercontent.com/snaplet/vercel-action/v3/scripts/ignore-build.mjs" | node --input-type=module
 ```
 
 ### Outputs

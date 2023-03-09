@@ -1,3 +1,7 @@
+import fs from "node:fs";
+import os from "node:os";
+
+
 console.log("Updating environment variables...");
 await updateEnvironmentVariables();
 console.log("Environment variables updated.");
@@ -12,7 +16,7 @@ if (process.env.AWAIT_FOR_DEPLOYMENT === "true") {
   console.log("Waiting for deployment to be ready...");
   deployment = await awaitForDeploymentToBeReady(deployment);
   console.log("Deployment ready.");
-  console.log(`::set-output name=deployment-url::${deployment.url}`);
+  fs.appendFileSync(process.env.GITHUB_OUTPUT, `deployment-url=${deployment.url}${os.EOL}`);
 }
 
 async function updateEnvironmentVariables() {
@@ -58,7 +62,7 @@ async function updateEnvironmentVariables() {
         const errResponse = await res.json();
         throw new Error(
           errResponse?.error?.message ??
-            "Could not create environment variables"
+          "Could not create environment variables"
         );
       }
       return res.json();
