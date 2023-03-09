@@ -89,6 +89,7 @@ async function createNewDeploymentForBranch(branchName) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
+      name: `snaplet-${process.env.GITHUB_HEAD_REF}`,
       project: process.env.VERCEL_PROJECT_ID,
       gitSource: {
         ref: branchName,
