@@ -100,7 +100,6 @@ async function createNewDeploymentForBranch(branchName) {
         type: "github",
         sha: process.env.GITHUB_SHA,
       },
-      target: "staging",
     }),
   }).then(async res => {
     if (!res.ok) {
