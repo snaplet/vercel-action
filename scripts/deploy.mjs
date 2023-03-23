@@ -96,13 +96,13 @@ async function createNewDeploymentForBranch(branchName) {
     body: JSON.stringify({
       // Name prefix is important here as it is used in the build ignore step
       // to determine if it was created by this action.
-      name: `snaplet-action-${process.env.GITHUB_SHA.substring(0, 7)}`,
+      name: `snaplet-action-${process.env.VERCEL_COMMIT_SHA.substring(0, 7)}`,
       project: process.env.VERCEL_PROJECT_ID,
       gitSource: {
         ref: branchName,
         repoId: process.env.GITHUB_REPOSITORY_ID,
         type: "github",
-        sha: process.env.GITHUB_SHA,
+        sha: process.env.VERCEL_COMMIT_SHA,
       },
     }),
   }).then(async res => {

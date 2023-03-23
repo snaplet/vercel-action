@@ -46,6 +46,9 @@ runs:
       env:
         AWAIT_FOR_DEPLOYMENT: ${{ inputs.await-for-deployment }}
         VERCEL_PREVIEW_ENV: ${{ inputs.env }}
+        # We cannot rely on `GITHUB_SHA` env for pull requests
+        # See: https://github.com/orgs/community/discussions/26325
+        VERCEL_COMMIT_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
       run: node --experimental-fetch --no-warnings ${{ github.action_path }}/scripts/deploy.mjs
 
     - if: ${{ inputs.delete == 'true' }}
