@@ -19,6 +19,11 @@ inputs:
     description: Environment variables to create on Vercel, they are scoped to the "preview" environment and the current branch
     required: false
     type: string
+  ignored-branches:
+    description: Branches to ignore from preview deployments, the default value is "main", "master" and "develop"
+    required: false
+    type: string
+    default: main,master,develop
   ignored-build-command:
     description: Command set for the Ignored Build Step in your project settings, the default script is canceling every preview deployments coming from the Vercel GitHub App.
     required: false
@@ -36,6 +41,7 @@ runs:
     - name: Setup
       shell: bash
       env:
+        IGNORED_BRANCHES: ${{ inputs.ignored-branches }}
         IGNORED_BUILD_COMMAND: ${{ inputs.ignored-build-command }}
       run: node --experimental-fetch --no-warnings ${{ github.action_path }}/scripts/setup.mjs
 
