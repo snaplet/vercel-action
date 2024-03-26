@@ -1,5 +1,11 @@
 import https from "node:https";
 
+// get ignored branches
+let ignoredBranches = [];
+if (process.argv[2] && process.argv[2] === '-b') {
+  ignoredBranches = process.argv[3].split(',');
+}
+
 // dumb fetch implementation
 const fetch = (url, options = {}) => new Promise((resolve, reject) => {
   const req = https.request(url, options, (res) => {
@@ -13,7 +19,7 @@ const fetch = (url, options = {}) => new Promise((resolve, reject) => {
   req.end();
 });
 
-if (process.env.VERCEL_ENV === "preview") {
+if (process.env.VERCEL_ENV === "preview" && !ignoredBranches.includes(process.env.VERCEL_GIT_COMMIT_REF)) {
   const teamId = process.env.VERCEL_TEAM_ID ? `?teamId=${process.env.VERCEL_TEAM_ID}` : '';
   const deployment = await fetch(`https://api.vercel.com/v13/deployments/${process.env.VERCEL_URL}${teamId}`, {
     headers: { Authorization: `Bearer ${process.env.VERCEL_ACCESS_TOKEN}` }
